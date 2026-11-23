@@ -32,7 +32,7 @@ export default function LoginForm() {
         return;
       }
 
-      router.replace("/");
+      router.replace("/dashboard");
       router.refresh();
     } catch {
       setError("Unable to sign in. Please try again.");
