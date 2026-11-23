@@ -1,0 +1,17 @@
+# CareerAI PH — Project Reflection
+
+Developing CareerAI PH has been a valuable learning experience because it allowed me to turn an idea into a working AI-powered platform. The project was built around a problem I wanted to address: college students may learn different subjects in school but struggle to understand how those classroom topics connect to the AI skills and tools they may need in their future careers.
+
+My goal was to create a platform that connects what students are currently learning with relevant AI topics, tools, and practical activities based on their career interests. Rather than functioning as a general chatbot or course recommendation system, CareerAI PH focuses on making classroom learning more connected to career preparation.
+
+Throughout the development process, I learned how important planning and system design are before writing code. Creating the product requirements document, architecture notes, and technical specifications helped establish the project's direction. These documents also made it easier to organize the features and understand how the different parts of the application would work together.
+
+One of the most significant parts of the project was implementing the AI recommendation and learning roadmap features. I worked with Next.js, TypeScript, Supabase, and an AI integration to generate structured recommendations based on students' subjects, classroom topics, and career interests. I also implemented roadmap progress tracking so students could monitor their learning activities. Building these features taught me that integrating AI into an application requires more than simply generating text. The output must be structured, validated, relevant to the user's information, and handled securely.
+
+I also encountered challenges involving authentication, database relationships, deployment configuration, and user interface improvements. Testing and debugging helped me identify and fix issues before confirming that the major features worked on the live website. Writing unit tests, configuring GitHub Actions, and adding Vercel Analytics also helped me understand the importance of software quality and monitoring.
+
+One important lesson I learned is that building a working application requires continuous testing and improvement. A feature may work during development but still need verification after deployment. I also learned that AI-generated information should be treated as guidance rather than a guarantee of career success or employment.
+
+Although CareerAI PH has reached a working deployed prototype, there are still areas that can be improved. Future versions could include roadmap history and selection, API rate limiting, and further testing with actual college students to evaluate whether the recommendations are useful and understandable. The planned two-minute demonstration and additional user feedback would also help communicate and evaluate the project more effectively.
+
+Overall, developing CareerAI PH strengthened my understanding of full-stack development, database management, AI integration, testing, deployment, and project documentation. More importantly, it helped me see how technology can connect classroom learning with practical opportunities. This project is an important starting point, and I hope to continue improving it so that more students can understand how what they learn today can prepare them for the careers they want tomorrow.
