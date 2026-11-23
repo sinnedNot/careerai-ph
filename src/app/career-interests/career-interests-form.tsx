@@ -20,6 +20,9 @@ type Props = {
 
 const initialState: CareerInterestState = {};
 
+const inputClassName =
+  "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200";
+
 export default function CareerInterestsForm({
   initialInterests,
 }: Props) {
@@ -54,7 +57,7 @@ export default function CareerInterestsForm({
         <div>
           <label
             htmlFor="careerName"
-            className="mb-2 block text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-semibold text-gray-800"
           >
             Career you&apos;re interested in
           </label>
@@ -66,18 +69,18 @@ export default function CareerInterestsForm({
             placeholder="e.g. Financial Analyst"
             maxLength={100}
             required
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            className={inputClassName}
           />
         </div>
 
         {state.error && (
-          <p role="alert" className="text-sm text-red-600">
+          <p role="alert" className="text-sm font-medium text-red-700">
             {state.error}
           </p>
         )}
 
         {state.success && (
-          <p role="status" className="text-sm text-green-700">
+          <p role="status" className="text-sm font-medium text-green-700">
             {state.success}
           </p>
         )}
@@ -85,7 +88,7 @@ export default function CareerInterestsForm({
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Adding..." : "Add career interest"}
         </button>
@@ -97,7 +100,7 @@ export default function CareerInterestsForm({
         </h2>
 
         {interests.length === 0 ? (
-          <p className="mt-3 text-sm text-gray-500">
+          <p className="mt-3 text-sm text-gray-700">
             You haven&apos;t added any career interests yet.
           </p>
         ) : (
@@ -105,9 +108,9 @@ export default function CareerInterestsForm({
             {interests.map((interest) => (
               <li
                 key={interest.id}
-                className="flex items-center justify-between gap-4 rounded-lg border border-gray-200 p-4"
+                className="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white p-4"
               >
-                <span className="text-sm font-medium text-gray-800">
+                <span className="text-sm font-semibold text-gray-900">
                   {interest.career_name}
                 </span>
 
@@ -115,7 +118,7 @@ export default function CareerInterestsForm({
                   type="button"
                   onClick={() => handleDelete(interest.id)}
                   disabled={isDeleting}
-                  className="text-sm font-medium text-red-600 hover:text-red-700 disabled:opacity-50"
+                  className="text-sm font-semibold text-red-700 hover:text-red-800 disabled:opacity-50"
                 >
                   Remove
                 </button>
@@ -125,7 +128,7 @@ export default function CareerInterestsForm({
         )}
 
         {deleteError && (
-          <p role="alert" className="mt-3 text-sm text-red-600">
+          <p role="alert" className="mt-3 text-sm font-medium text-red-700">
             {deleteError}
           </p>
         )}
