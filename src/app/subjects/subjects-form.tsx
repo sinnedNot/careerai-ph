@@ -22,6 +22,12 @@ type Props = {
 
 const initialState: SubjectState = {};
 
+const inputClassName =
+  "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200";
+
+const editInputClassName =
+  "mt-2 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200";
+
 export default function SubjectsForm({ initialSubjects }: Props) {
   const [subjects, setSubjects] = useState(initialSubjects);
   const [topics, setTopics] = useState([""]);
@@ -115,7 +121,7 @@ export default function SubjectsForm({ initialSubjects }: Props) {
         <div>
           <label
             htmlFor="subjectName"
-            className="mb-2 block text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-semibold text-gray-800"
           >
             Subject name
           </label>
@@ -126,12 +132,12 @@ export default function SubjectsForm({ initialSubjects }: Props) {
             placeholder="e.g. Auditing"
             maxLength={100}
             required
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            className={inputClassName}
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-gray-700">
+          <label className="mb-2 block text-sm font-semibold text-gray-800">
             Classroom topics
           </label>
 
@@ -147,14 +153,14 @@ export default function SubjectsForm({ initialSubjects }: Props) {
                   }
                   placeholder={`Topic ${index + 1}, e.g. Internal Controls`}
                   maxLength={150}
-                  className="min-w-0 flex-1 rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className={inputClassName}
                 />
 
                 {topics.length > 1 && (
                   <button
                     type="button"
                     onClick={() => removeTopicField(index)}
-                    className="rounded-lg px-3 text-sm font-medium text-red-600 hover:bg-red-50"
+                    className="rounded-lg px-3 text-sm font-semibold text-red-700 hover:bg-red-50"
                     aria-label={`Remove topic ${index + 1}`}
                   >
                     Remove
@@ -168,20 +174,20 @@ export default function SubjectsForm({ initialSubjects }: Props) {
             type="button"
             onClick={addTopicField}
             disabled={topics.length >= 30}
-            className="mt-3 text-sm font-semibold text-blue-600 hover:text-blue-700 disabled:opacity-50"
+            className="mt-3 text-sm font-semibold text-blue-700 hover:text-blue-800 disabled:opacity-50"
           >
             + Add another topic
           </button>
         </div>
 
         {state.error && (
-          <p role="alert" className="text-sm text-red-600">
+          <p role="alert" className="text-sm font-medium text-red-700">
             {state.error}
           </p>
         )}
 
         {state.success && (
-          <p role="status" className="text-sm text-green-700">
+          <p role="status" className="text-sm font-medium text-green-700">
             {state.success}
           </p>
         )}
@@ -189,7 +195,7 @@ export default function SubjectsForm({ initialSubjects }: Props) {
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60"
+          className="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Saving..." : "Add subject"}
         </button>
@@ -201,7 +207,7 @@ export default function SubjectsForm({ initialSubjects }: Props) {
         </h2>
 
         {subjects.length === 0 ? (
-          <p className="mt-3 text-sm text-gray-500">
+          <p className="mt-3 text-sm text-gray-700">
             You haven&apos;t added any subjects yet.
           </p>
         ) : (
@@ -209,25 +215,25 @@ export default function SubjectsForm({ initialSubjects }: Props) {
             {subjects.map((subject) => (
               <div
                 key={subject.id}
-                className="rounded-xl border border-gray-200 p-5"
+                className="rounded-xl border border-gray-200 bg-white p-5"
               >
                 {editingId === subject.id ? (
                   <form
                     onSubmit={(event) => handleUpdate(event, subject.id)}
                     className="space-y-3"
                   >
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-semibold text-gray-800">
                       Subject name
                       <input
                         name="subjectName"
                         defaultValue={subject.subject_name}
                         required
                         maxLength={100}
-                        className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                        className={editInputClassName}
                       />
                     </label>
 
-                    <p className="text-sm font-medium text-gray-700">
+                    <p className="text-sm font-semibold text-gray-800">
                       Classroom topics
                     </p>
 
@@ -237,7 +243,7 @@ export default function SubjectsForm({ initialSubjects }: Props) {
                         name="topics"
                         defaultValue={topic}
                         maxLength={150}
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                        className={editInputClassName}
                       />
                     ))}
 
@@ -245,14 +251,14 @@ export default function SubjectsForm({ initialSubjects }: Props) {
                       name="topics"
                       placeholder="Add another topic"
                       maxLength={150}
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                      className={editInputClassName}
                     />
 
                     <div className="flex gap-3">
                       <button
                         type="submit"
                         disabled={isWorking}
-                        className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
+                        className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60"
                       >
                         {isWorking ? "Saving..." : "Save changes"}
                       </button>
@@ -260,7 +266,7 @@ export default function SubjectsForm({ initialSubjects }: Props) {
                       <button
                         type="button"
                         onClick={() => setEditingId(null)}
-                        className="text-sm font-medium text-gray-600"
+                        className="text-sm font-semibold text-gray-700 hover:text-gray-900"
                       >
                         Cancel
                       </button>
@@ -277,7 +283,7 @@ export default function SubjectsForm({ initialSubjects }: Props) {
                         <button
                           type="button"
                           onClick={() => setEditingId(subject.id)}
-                          className="text-sm font-medium text-blue-600 hover:text-blue-700"
+                          className="text-sm font-semibold text-blue-700 hover:text-blue-800"
                         >
                           Edit
                         </button>
@@ -286,23 +292,23 @@ export default function SubjectsForm({ initialSubjects }: Props) {
                           type="button"
                           onClick={() => handleDelete(subject.id)}
                           disabled={isWorking}
-                          className="text-sm font-medium text-red-600 hover:text-red-700 disabled:opacity-50"
+                          className="text-sm font-semibold text-red-700 hover:text-red-800 disabled:opacity-50"
                         >
                           Remove
                         </button>
                       </div>
                     </div>
 
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-gray-700">
                       Classroom topics
                     </p>
 
                     {subject.current_topics.length === 0 ? (
-                      <p className="mt-2 text-sm text-gray-500">
+                      <p className="mt-2 text-sm text-gray-700">
                         No topics added yet.
                       </p>
                     ) : (
-                      <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-gray-700">
+                      <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-gray-800">
                         {subject.current_topics.map((topic, index) => (
                           <li key={index}>{topic}</li>
                         ))}
@@ -316,13 +322,13 @@ export default function SubjectsForm({ initialSubjects }: Props) {
         )}
 
         {editError && (
-          <p role="alert" className="mt-4 text-sm text-red-600">
+          <p role="alert" className="mt-4 text-sm font-medium text-red-700">
             {editError}
           </p>
         )}
 
         {editSuccess && (
-          <p role="status" className="mt-4 text-sm text-green-700">
+          <p role="status" className="mt-4 text-sm font-medium text-green-700">
             {editSuccess}
           </p>
         )}
