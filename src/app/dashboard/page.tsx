@@ -1,3 +1,4 @@
+
 import { logout } from "./actions";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -17,29 +18,24 @@ export default async function DashboardPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <header className="border-b bg-white">
+      <header className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="text-xl font-bold text-blue-600"
-          >
+          <Link href="/" className="text-xl font-bold text-blue-700">
             CareerAI PH
           </Link>
 
-<div className="flex items-center gap-4">
-  <span className="text-sm text-gray-600">
-    {user.email}
-  </span>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-700">{user.email}</span>
 
-  <form action={logout}>
-    <button
-      type="submit"
-      className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200"
-    >
-      Log out
-    </button>
-  </form>
-</div>
+            <form action={logout}>
+              <button
+                type="submit"
+                className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200"
+              >
+                Log out
+              </button>
+            </form>
+          </div>
         </div>
       </header>
 
@@ -49,9 +45,9 @@ export default async function DashboardPage() {
             Welcome to your dashboard!
           </h1>
 
-          <p className="mt-2 text-gray-600">
-            Connect what you learn today with the AI skills
-            you&apos;ll need tomorrow.
+          <p className="mt-2 text-gray-700">
+            Connect what you learn today with the AI skills you&apos;ll need
+            tomorrow.
           </p>
         </div>
 
@@ -66,6 +62,12 @@ export default async function DashboardPage() {
             title="My Subjects"
             description="Add your current college subjects and classroom topics."
             href="/subjects"
+          />
+
+          <DashboardCard
+            title="My Career Interests"
+            description="Add and manage the careers you want to pursue."
+            href="/career-interests"
           />
 
           <DashboardCard
@@ -99,15 +101,13 @@ function DashboardCard({
       href={href}
       className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
     >
-      <h2 className="text-lg font-semibold text-gray-900">
-        {title}
-      </h2>
+      <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
 
-      <p className="mt-2 text-sm leading-6 text-gray-600">
+      <p className="mt-2 text-sm leading-6 text-gray-700">
         {description}
       </p>
 
-      <span className="mt-5 inline-block text-sm font-semibold text-blue-600">
+      <span className="mt-5 inline-block text-sm font-semibold text-blue-700">
         Open →
       </span>
     </Link>
