@@ -5,6 +5,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
+const inputClassName =
+  "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200";
+
 export default function LoginForm() {
   const router = useRouter();
 
@@ -46,7 +49,7 @@ export default function LoginForm() {
       <div>
         <label
           htmlFor="email"
-          className="mb-1 block text-sm font-medium"
+          className="mb-2 block text-sm font-medium text-gray-800"
         >
           Email address
         </label>
@@ -57,7 +60,7 @@ export default function LoginForm() {
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-4 py-3"
+          className={inputClassName}
           placeholder="you@example.com"
         />
       </div>
@@ -65,7 +68,7 @@ export default function LoginForm() {
       <div>
         <label
           htmlFor="password"
-          className="mb-1 block text-sm font-medium"
+          className="mb-2 block text-sm font-medium text-gray-800"
         >
           Password
         </label>
@@ -76,13 +79,13 @@ export default function LoginForm() {
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-4 py-3"
+          className={inputClassName}
           placeholder="Enter your password"
         />
       </div>
 
       {error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-red-700">
           {error}
         </p>
       )}
@@ -90,7 +93,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isPending ? "Signing in..." : "Sign in"}
       </button>
